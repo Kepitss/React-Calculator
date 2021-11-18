@@ -1,4 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&display=swap");
+
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
 body {
 	background-color: rgb(20, 20, 20);
-	color: whitesmoke;
+}
+
+.btn {
+	width: 75px;
+	height: 75px;
+	margin: 3px;
+	font-family: "Baloo 2", cursive;
+	font-size: 30px;
+	font-weight: 500;
+	border-radius: 20px;
+}
+
+@media (max-width: 347px) {
+	.btn {
+		width: 20vw;
+		height: 20vw;
+		font-size: 7vw;
+	}
 }
