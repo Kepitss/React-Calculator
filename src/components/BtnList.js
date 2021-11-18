@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row";
 
 import Btn from "./Btn";
 
-const BtnList = () => {
+const BtnList = ({ onButtonClick }) => {
 	// Render all buttons
 	const renderButtons = () => {
 		const rows = [
@@ -32,7 +32,7 @@ const BtnList = () => {
 										className="d-flex justify-content-center align-items-center"
 										key={string.text}
 									>
-										<Btn content={string.text} type={string.type} />
+										<Btn clickEvent={onButtonClick} content={string.text} type={string.type} />
 									</Col>
 								);
 							})}
