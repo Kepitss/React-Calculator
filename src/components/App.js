@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Container from "react-bootstrap/Container";
+
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
 import "../css/custom.css";
@@ -9,6 +10,8 @@ import BtnList from "./BtnList";
 const App = () => {
 	// State
 	const [value, setValue] = useState("0");
+	const [memory, setMemory] = useState(null);
+	const [operator, setOperator] = useState(null);
 
 	// Calculations and more function for calculator
 	const onButtonClick = (content) => () => {
@@ -17,6 +20,8 @@ const App = () => {
 		// All Clear button
 		if (content === "C") {
 			setValue("0");
+			setMemory(null);
+			setOperator(null);
 			return;
 		}
 
@@ -41,6 +46,8 @@ const App = () => {
 		// Get % of number (value)
 		if (content === "%") {
 			setValue((currentValue / 100).toString());
+			setMemory(null);
+			setOperator(null);
 			return;
 		}
 
@@ -55,8 +62,112 @@ const App = () => {
 		} else {
 			setValue(parseFloat(currentValue + content).toString());
 		}
+
+		// When clicking + operator
+		if (content === "+") {
+			if (operator !== null) {
+				if (operator === "+") {
+					setMemory(memory + currentValue);
+				} else if (operator === "-") {
+					setMemory(memory - currentValue);
+				} else if (operator === "×") {
+					setMemory(memory * currentValue);
+				} else if (operator === "÷") {
+					setMemory(memory / currentValue);
+				}
+			} else {
+				setMemory(currentValue);
+			}
+
+			setValue("0");
+			setOperator("+");
+			return;
+		}
+
+		// When clicking - operator
+		if (content === "-") {
+			if (operator !== null) {
+				if (operator === "+") {
+					setMemory(memory + currentValue);
+				} else if (operator === "-") {
+					setMemory(memory - currentValue);
+				} else if (operator === "×") {
+					setMemory(memory * currentValue);
+				} else if (operator === "÷") {
+					setMemory(memory / currentValue);
+				}
+			} else {
+				setMemory(currentValue);
+			}
+
+			setValue("0");
+			setOperator("-");
+			return;
+		}
+
+		// When clicking × operator
+		if (content === "×") {
+			if (operator !== null) {
+				if (operator === "+") {
+					setMemory(memory + currentValue);
+				} else if (operator === "-") {
+					setMemory(memory - currentValue);
+				} else if (operator === "×") {
+					setMemory(memory * currentValue);
+				} else if (operator === "÷") {
+					setMemory(memory / currentValue);
+				}
+			} else {
+				setMemory(currentValue);
+			}
+
+			setValue("0");
+			setOperator("×");
+			return;
+		}
+
+		// When clicking ÷ operator
+		if (content === "÷") {
+			if (operator !== null) {
+				if (operator === "+") {
+					setMemory(memory + currentValue);
+				} else if (operator === "-") {
+					setMemory(memory - currentValue);
+				} else if (operator === "×") {
+					setMemory(memory * currentValue);
+				} else if (operator === "÷") {
+					setMemory(memory / currentValue);
+				}
+			} else {
+				setMemory(currentValue);
+			}
+
+			setValue("0");
+			setOperator("÷");
+			return;
+		}
+
+		// When clicking = sign
+		if (content === "=") {
+			if (!operator) return;
+
+			if (operator === "+") {
+				setValue((memory + currentValue).toString());
+			} else if (operator === "-") {
+				setValue((memory - currentValue).toString());
+			} else if (operator === "×") {
+				setValue((memory * currentValue).toString());
+			} else if (operator === "÷") {
+				setValue((memory / currentValue).toString());
+			}
+
+			setMemory(null);
+			setOperator(null);
+			return;
+		}
 	};
 
+	// App Component return function
 	return (
 		<Container className="d-flex justify-content-center pt-5">
 			<Row>
