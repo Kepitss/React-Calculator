@@ -3,9 +3,9 @@
 ###### Live project is [here](https://eloquent-euclid-f93ad7.netlify.app/)
 
 ## Description
-Calculator made with React witch can do mathematical operations with  +, -, ÷, × and much more.
+Calculator made with React wich can do mathematical operations with  +, -, ÷, × and much more.
 
-## Technologys used
+## Technologies used
 - React
 - Bootstrap
 - Sass
